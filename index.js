@@ -5,6 +5,8 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const config = require("./config");
 const auth = require("./auth");
+const fs = require('fs');
+const dbHelper = require("./db_helper/db.js");
 
 try {
   const db = mysql.createConnection(config.db);
@@ -39,6 +41,11 @@ try {
       res.json({ type: "success", message: "Test OK", results });
     });
   });
+
+  app.use(
+    "/db",
+    dbHelper({ db, express, fs })
+  );
 
   app.use(
     "/auth",

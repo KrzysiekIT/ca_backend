@@ -4,6 +4,7 @@ module.exports = {
     password: "ca",
     database: "ca",
     socketPath: "/var/run/mysqld/mysqld.sock",
+    multipleStatements: true,
   },
   env: "dev",
   port: "41205",

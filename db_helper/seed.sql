@@ -3,8 +3,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `roles` (
     `id` int(11) NOT NULL,
     `bit` int(11) NOT NULL,
-    `name` varchar(50) NOT NULL,
-    PRIMARY KEY (`id`)
+    `name` varchar(50) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 INSERT INTO `roles` (`id`, `bit`, `name`)
 VALUES (1, 1, 'superadmin');
