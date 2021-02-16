@@ -1,0 +1,8 @@
+START TRANSACTION;
+CREATE TABLE IF NOT EXISTS `roles` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `bit` int(11) NOT NULL,
+    `name` varchar(50) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+COMMIT;

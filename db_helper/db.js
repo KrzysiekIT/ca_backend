@@ -24,7 +24,12 @@ module.exports = ({ db, express, fs }) => {
   });
 
   routes.get("/seed", (req, res) => {
-    const dbQuery = readSqlFromFile("/seed.sql")
+    const tables = ["roles", "users"];
+    let dbQuery = "";
+    tables.forEach((table) => {
+      dbQuery+=readSqlFromFile(`/tables/${table}_create.sql`);
+      dbQuery+=readSqlFromFile(`/tables/${table}_seed.sql`);
+    })
     db.query(dbQuery, (error, results) => {
       if (error) {
         return res
