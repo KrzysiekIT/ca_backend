@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const auth = require("./auth");
 const fs = require('fs');
-const dbHelper = require("./db_helper/db.js");
+const dbHelper = require("@/api/db");
 const permit = require("@/auth/permit.js");
 const jwtToken = process.env.JWT_TOKEN;
 try {
