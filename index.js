@@ -1,4 +1,5 @@
-const db = require("./db/connection.js")
+require('module-alias/register')
+const db = require("@/db/connection.js")
 const express = require("express");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
@@ -7,7 +8,7 @@ const config = require("./config");
 const auth = require("./auth");
 const fs = require('fs');
 const dbHelper = require("./db_helper/db.js");
-const permit = require("./permit.js");
+const permit = require("@/auth/permit.js");
 
 try {
   const app = express();
