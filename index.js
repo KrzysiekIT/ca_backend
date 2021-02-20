@@ -1,4 +1,4 @@
-const mysql = require("mysql");
+const db = require("./db/connection.js")
 const express = require("express");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
@@ -7,9 +7,9 @@ const config = require("./config");
 const auth = require("./auth");
 const fs = require('fs');
 const dbHelper = require("./db_helper/db.js");
+const permit = require("./permit.js");
 
 try {
-  const db = mysql.createConnection(config.db);
   const app = express();
 
   app.use(function (req, res, next) {
@@ -33,7 +33,22 @@ try {
     })
   );
 
-  app.get("/test", (req, res) => {
+  const checkAuth = (roleBit) => {
+    // return a middleware
+    return (request, response, next) => {
+      permit({ db, express, bcrypt, jwt, jwtToken: config.jwtToken, roleBit, request, response, next });
+      //next();
+      /* const { user } = request
+    
+        if (user && permittedRoles.includes(user.role)) {
+          next(); // role is allowed, so continue on the next middleware
+        } else {
+          response.status(403).json({message: "Forbidden"}); // user is forbidden
+        } */
+    };
+  };
+
+  app.get("/api/test", checkAuth(35), (req, res) => {
     db.query("select 1+1", (error, results) => {
       if (error) {
         return res.status(500).json({ type: "error", error });
@@ -43,12 +58,12 @@ try {
   });
 
   app.use(
-    "/db",
+    "/api/db",
     dbHelper({ db, express, fs })
   );
 
   app.use(
-    "/auth",
+    "/api/auth",
     auth({ db, express, bcrypt, jwt, jwtToken: config.jwtToken })
   );
 
