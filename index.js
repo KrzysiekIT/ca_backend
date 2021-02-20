@@ -1,15 +1,15 @@
+require('dotenv').config();
 require('module-alias/register')
 const db = require("@/db/connection.js")
 const express = require("express");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const config = require("./config");
 const auth = require("./auth");
 const fs = require('fs');
 const dbHelper = require("./db_helper/db.js");
 const permit = require("@/auth/permit.js");
-
+const jwtToken = process.env.JWT_TOKEN;
 try {
   const app = express();
 
@@ -37,7 +37,7 @@ try {
   const checkAuth = (roleBit) => {
     // return a middleware
     return (request, response, next) => {
-      permit({ db, express, bcrypt, jwt, jwtToken: config.jwtToken, roleBit, request, response, next });
+      permit({ db, express, bcrypt, jwt, jwtToken, roleBit, request, response, next });
       //next();
       /* const { user } = request
     
@@ -65,11 +65,11 @@ try {
 
   app.use(
     "/api/auth",
-    auth({ db, express, bcrypt, jwt, jwtToken: config.jwtToken })
+    auth({ db, express, bcrypt, jwt, jwtToken })
   );
 
-  app.listen(config.port);
-  console.log("App is running on port " + config.port);
+  app.listen(process.env.PORT);
+  console.log("App is running on port " + process.env.PORT);
 } catch (e) {
   process.exit(1);
 }

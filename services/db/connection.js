@@ -1,6 +1,13 @@
-const config = require("../../config.js");
 const mysql = require("mysql");
 
-const db = mysql.createConnection(config.db);
+const config = {
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  socketPath: "/var/run/mysqld/mysqld.sock",
+  multipleStatements: true,
+};
 
-module.exports = db
+const db = mysql.createConnection(config);
+
+module.exports = db;

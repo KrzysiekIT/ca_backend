@@ -9,7 +9,7 @@ const checkOwnership = {
   };
   
   module.exports = ({ db, express, bcrypt, jwt, jwtToken, roleBit, request, response, next }) => {
-    if(roleBit===315) {
+    if(roleBit===35) {
       console.log(__dirname)
       next();
     } else {
