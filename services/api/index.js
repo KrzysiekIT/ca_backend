@@ -1,12 +1,14 @@
 const { Router } = require("express");
 const router = Router();
+const { readdirSync, statSync } = require("fs");
+const { join } = require("path");
+const getDirs = (p) =>
+  readdirSync(p).filter((f) => statSync(join(p, f)).isDirectory());
 
-const dbHelper = require("@/api/db");
-const auth = require("@/api/auth");
-const users = require("@/api/users");
+const dirs = getDirs(__dirname);
 
-router.use("/db", dbHelper);
-router.use("/auth", auth);
-router.use("/users", users);
+dirs.forEach((dir) => {
+    router.use(`/${dir}`, require(`@/api/${dir}`))
+});
 
 module.exports = router;
