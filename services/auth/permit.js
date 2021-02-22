@@ -7,11 +7,11 @@ roleBit determines who has acces to entry
 8 - student
 16 - owner
  */
-const checkAuth = (roleBit) => {
+const checkAuth = (pageAuthLevel) => {
   // return a middleware
   return (request, response, next) => {
     permit({
-      roleBit,
+      pageAuthLevel,
       request,
       response,
       next,
