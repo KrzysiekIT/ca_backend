@@ -1,4 +1,4 @@
-const getDbQueryResult = (cb) => {
+const getDbResult = (cb) => {
   return (err, results) => {
     if (err) {
       cb(err);
@@ -7,4 +7,4 @@ const getDbQueryResult = (cb) => {
   };
 };
 
-module.exports = getDbQueryResult;
+module.exports = getDbResult;
