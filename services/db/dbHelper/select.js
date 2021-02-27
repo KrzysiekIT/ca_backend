@@ -1,9 +1,10 @@
 const db = require("@/db/connection.js");
-const getDbResult = require("./getDbResult.js")
+const getDbResult = require("./getDbResult.js");
+const makeDbQuery = require("./makeDbQuery.js");
 
-const select = ({cb, table, columns}) => {
-  columns = columns.join(", ");
-  db.query(`SELECT ${columns} FROM ${table};`, getDbResult(cb));
+const select = ({ cb, table, columns }) => {
+  const makeQuery = makeDbQuery("select");
+  db.query(makeQuery({ columns, table }), getDbResult(cb));
 };
 
 module.exports = select;
