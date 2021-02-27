@@ -1,6 +1,6 @@
-const db = require("@/db/connection.js");
-const getDbResult = require("./getDbResult.js");
-const makeDbQuery = require("./makeDbQuery.js");
+const db = require("@/db/connection");
+const getDbResult = require("./getDbResult");
+const makeDbQuery = require("./makeDbQuery");
 
 const select = ({ cb, table, columns }) => {
   const makeQuery = makeDbQuery("select");
