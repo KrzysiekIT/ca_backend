@@ -1,16 +1,12 @@
 const { Router } = require("express");
 const router = Router();
 const db = require("@/db/dbHelper");
+const cb = require("@/api/helper");
 const permit = require("@/auth/permit");
 
 router.get("/", permit(3), (req, res) => {
   const selectOptions = {
-    cb: (err, response) => {
-      if (err) {
-        res.status(500).json({ message: "Database error" });
-      }
-      res.json(response);
-    },
+    cb: cb(res),
     table: "users",
     columns: ["id", "email", "name", "surname", "phone"],
   };
