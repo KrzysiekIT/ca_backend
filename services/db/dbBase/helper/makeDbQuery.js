@@ -1,4 +1,4 @@
-const makeDbQuery = (type) => {
+const makeDbQuery = () => {
   const prepare = {
     updateSet: (newValues) => {
       const keysValues = [];
@@ -13,24 +13,27 @@ const makeDbQuery = (type) => {
     updateConditions: (conditions) => {
       return conditions
         .map(({ field, condition, value }) => {
+          if (typeof value === "string") {
+            value = `'${value}'`;
+          }
           return `${field} ${condition} ${value}`;
         })
         .join(" AND ");
     },
   };
   const types = {
-    select: (options) => {
-      return `SELECT ${options.columns.join(", ")} FROM ${options.table};`;
+    select: ({ columns, table }) => {
+      return `SELECT ${columns.join(", ")} FROM ${table};`;
     },
-    update: (options) => {
-      return `UPDATE ${options.table} SET ${prepare.updateSet(
-        options.newValues
-      )} WHERE ${prepare.updateConditions(options.conditions)};`;
+    update: ({ table, newValues, conditions }) => {
+      return `UPDATE ${table} SET ${prepare.updateSet(
+        newValues
+      )} WHERE ${prepare.updateConditions(conditions)};`;
     },
   };
-  return (options) => {
+  return ({ type, ...options }) => {
     return types[type](options);
   };
 };
 
-module.exports = makeDbQuery;
+module.exports = makeDbQuery();
