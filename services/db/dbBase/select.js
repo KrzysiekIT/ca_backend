@@ -1,6 +1,5 @@
 const db = require("@/db/connection");
-const getDbResult = require("./getDbResult");
-const makeDbQuery = require("./makeDbQuery");
+const { makeDbQuery, getDbResult } = require("./helper");
 
 const select = ({ cb, table, columns }) => {
   const makeQuery = makeDbQuery("select");
