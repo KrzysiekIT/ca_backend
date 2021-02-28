@@ -3,6 +3,9 @@ const makeDbQuery = (type) => {
     updateSet: (newValues) => {
       const keysValues = [];
       Object.keys(newValues).forEach((columnName) => {
+        if (typeof newValues[columnName] === "string") {
+          newValues[columnName] = `'${newValues[columnName]}'`;
+        }
         keysValues.push(`${columnName} = ${newValues[columnName]}`);
       });
       return keysValues.join(", ");
@@ -22,7 +25,7 @@ const makeDbQuery = (type) => {
     update: (options) => {
       return `UPDATE ${options.table} SET ${prepare.updateSet(
         options.newValues
-      )} WHERE ${prepare.updateConditions(options.conditions)}`;
+      )} WHERE ${prepare.updateConditions(options.conditions)};`;
     },
   };
   return (options) => {
