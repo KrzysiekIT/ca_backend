@@ -1,11 +1,9 @@
-const select = require("./select");
-const update = require("./update");
+const dbConn = require("@/db/connection");
+const { makeDbQuery, getDbResult } = require("./helper");
 
-class Db {
-  select = select;
-  update = update;
-}
+const update = ({ cb, type, ...queryOptions }) => {
+  const makeQuery = makeDbQuery(type);
+  dbConn.query(makeQuery(queryOptions), getDbResult(cb));
+};
 
-const db = new Db();
-
-module.exports = db;
+module.exports = update;

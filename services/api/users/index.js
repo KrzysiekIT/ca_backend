@@ -7,10 +7,11 @@ const permit = require("@/auth/permit");
 router.get("/", permit(3), (req, res) => {
   const selectOptions = {
     cb: cb(res),
+    type: "select",
     table: "users",
     columns: ["id", "email", "name", "surname", "phone"],
   };
-  db.select(selectOptions);
+  db(selectOptions);
 });
 
 module.exports = router;
