@@ -45,6 +45,9 @@ const makeDbQuery = () => {
     create: ({ table, values }) => {
       return `INSERT INTO ${table} ${prepare.create(values)};`;
     },
+    remove: ({ table, conditions }) => {
+      return `DELETE FROM ${table} WHERE ${prepare.updateConditions(conditions)};`;
+    },
     update: ({ table, newValues, conditions }) => {
       return `UPDATE ${table} SET ${prepare.updateSet(
         newValues
