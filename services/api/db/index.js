@@ -32,7 +32,6 @@ routes.get("/seed", (req, res) => {
     "payments",
     "groups",
     "lessons",
-    "students",
     "presences",
     "lessons_missed",
   ];
