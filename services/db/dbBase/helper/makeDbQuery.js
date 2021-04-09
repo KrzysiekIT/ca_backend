@@ -20,6 +20,13 @@ const makeDbQuery = () => {
         })
         .join(" AND ");
     },
+    joinConditions: (conditions) => {
+      return conditions
+        .map(({ field, condition, value }) => {
+          return `${field} ${condition} ${value}`;
+        })
+        .join(" AND ");
+    },
     create: (values) => {
       const keys = [];
       const keysValues = [];
@@ -42,11 +49,33 @@ const makeDbQuery = () => {
         ", "
       )} FROM ${table} WHERE ${prepare.updateConditions(conditions)};`;
     },
+    selectWhereDeep: ({
+      columns,
+      table,
+      conditions,
+      joinTable,
+      joinColumns,
+      joinConditions,
+    }) => {
+      columns = columns.map((column) => `${table}.${column}`);
+      joinColumns = joinColumns.map(
+        (column) => `${joinTable}.${column} as ${joinTable}_${column}`
+      );
+      const columnsToSelect = [...columns, ...joinColumns];
+      const dbQuery = `SELECT ${columnsToSelect.join(
+        ", "
+      )} FROM ${table} LEFT JOIN ${joinTable} ON ${prepare.joinConditions(
+        joinConditions
+      )} WHERE ${prepare.updateConditions(conditions)};`;
+      return dbQuery;
+    },
     create: ({ table, values }) => {
       return `INSERT INTO ${table} ${prepare.create(values)};`;
     },
     remove: ({ table, conditions }) => {
-      return `DELETE FROM ${table} WHERE ${prepare.updateConditions(conditions)};`;
+      return `DELETE FROM ${table} WHERE ${prepare.updateConditions(
+        conditions
+      )};`;
     },
     update: ({ table, newValues, conditions }) => {
       return `UPDATE ${table} SET ${prepare.updateSet(
