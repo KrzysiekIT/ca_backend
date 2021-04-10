@@ -4,7 +4,7 @@ const db = require("@/db/dbBase");
 const cb = require("@/api/helper");
 const permit = require("@/auth/permit");
 
-router.get("/:userId/", permit(15), (req, res) => {
+router.get("/:userId/", permit(23), (req, res) => {
   const options = {
     cb: cb(res),
     table: "presences",
