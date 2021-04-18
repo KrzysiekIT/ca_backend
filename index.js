@@ -15,6 +15,15 @@ try {
   );
 
   app.use("/api", router);
+  
+  io = require("socket.io")(process.env.SOCKET_PORT);
+  io.on("connection", (socket) => {
+    console.log("a user connected");
+    socket.on("msg", (msg) => {
+      console.log(msg)
+      io.emit("someEvent", msg);
+    });
+  });
 
   app.listen(process.env.PORT);
   console.log("App is running on port " + process.env.PORT);
