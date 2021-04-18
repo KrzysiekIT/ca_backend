@@ -15,13 +15,17 @@ try {
   );
 
   app.use("/api", router);
-  
-  io = require("socket.io")(process.env.SOCKET_PORT);
+
+  io = require("socket.io")(process.env.SOCKET_PORT, {
+    cors: {
+      origin: "*",
+    },
+  });
   io.on("connection", (socket) => {
     console.log("a user connected");
-    socket.on("msg", (msg) => {
-      console.log(msg)
-      io.emit("someEvent", msg);
+    socket.on("message", (msg) => {
+      console.log(msg);
+      io.emit("message", msg);
     });
   });
 
