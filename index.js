@@ -23,9 +23,9 @@ try {
   });
   io.on("connection", (socket) => {
     console.log("a user connected");
-    socket.on("message", (msg) => {
-      console.log(msg);
-      io.emit("message", msg);
+    socket.on("message", (message) => {
+      console.log(message);
+      io.emit("message", message);
     });
   });
 
