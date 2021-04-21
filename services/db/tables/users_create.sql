@@ -11,7 +11,6 @@ CREATE TABLE IF NOT EXISTS `users` (
     `parent_phone_number` varchar(255),
     `status` tinyint(3),
     `start_at` datetime DEFAULT NULL,
-    `phone` varchar(255),
     `role_id` int(11) NOT NULL,
     `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
     `group_id` int(11) DEFAULT NULL,

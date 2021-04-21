@@ -20,7 +20,6 @@ router.get("/", permit(3), (req, res) => {
       "parent_phone_number",
       "status",
       "start_at",
-      "phone",
       "role_id",
       "created_at",
       "group_id",
