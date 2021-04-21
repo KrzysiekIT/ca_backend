@@ -9,7 +9,6 @@ CREATE TABLE IF NOT EXISTS `users` (
     `parent_full_name` varchar(255),
     `parent_email` varchar(255),
     `parent_phone_number` varchar(255),
-    `lesson_day` tinyint(3),
     `status` tinyint(3),
     `start_at` datetime DEFAULT NULL,
     `phone` varchar(255),

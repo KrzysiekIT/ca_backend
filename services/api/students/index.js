@@ -18,7 +18,6 @@ router.get("/", permit(3), (req, res) => {
       "parent_full_name",
       "parent_email",
       "parent_phone_number",
-      "lesson_day",
       "status",
       "start_at",
       "phone",
