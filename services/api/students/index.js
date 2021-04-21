@@ -8,15 +8,36 @@ router.get("/", permit(3), (req, res) => {
   const options = {
     cb: cb(res),
     table: "users",
-    type: "select",
+    type: "selectWhereDeep",
     columns: [
       "id",
       "email",
       "name",
       "surname",
+      "birth_year",
+      "parent_full_name",
+      "parent_email",
+      "parent_phone_number",
+      "lesson_day",
+      "status",
+      "start_at",
       "phone",
       "role_id",
       "created_at",
+      "group_id",
+      "terms_accepted"
+    ],
+    conditions: [
+      {
+        field: "`users`.`role_id`",
+        condition: "=",
+        value: 4,
+      },
+    ],
+    joinTable: "groups",
+    joinColumns: ["trainer_id", "lesson_day", "lesson_hour"],
+    joinConditions: [
+      { field: "users.group_id", condition: "=", value: "groups.id" },
     ],
   };
   db(options);
