@@ -109,6 +109,24 @@ VALUES (
     ),
     (
         6,
+        'monika@test.com',
+        '$2a$10$pyMYtPfIvE.PAboF3cIx9.IsyW73voMIRxFINohzgeV0I2BxwnrEu',
+        'Monika',
+        'Bródka',
+        2000,
+        'Jan Bródek',
+        'brodek@gmaiilc.om',
+        '423423411',
+        1,
+        '2018-01-21 00:00:00',
+        4,
+        '2018-01-21 00:00:00',
+        1,
+        0,
+        0
+    ),
+    (
+        7,
         'jan@test.com',
         '$2a$10$pyMYtPfIvE.PAboF3cIx9.IsyW73voMIRxFINohzgeV0I2BxwnrEu',
         'Jan',
@@ -123,6 +141,6 @@ VALUES (
         '2018-01-21 00:00:00',
         1,
         0,
-        1
+        0
     );
 COMMIT;
