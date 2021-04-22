@@ -102,7 +102,7 @@ const makeDbQuery = () => {
       return dbQuery;
     },
     create: ({ table, values }) => {
-      return `INSERT INTO ${table} ${prepare.create(values)};`;
+      return `INSERT INTO ${table} ${prepare.create(values)}; SELECT id, ${Object.keys(values).join(", ")} FROM ${table} WHERE id=LAST_INSERT_ID()`;
     },
     remove: ({ table, conditions }) => {
       return `DELETE FROM ${table} WHERE ${prepare.updateConditions(
