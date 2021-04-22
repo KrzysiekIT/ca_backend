@@ -8,7 +8,7 @@ router.get("/", permit(3), (req, res) => {
   const options = {
     cb: cb(res),
     table: "users",
-    type: "selectWhereDeep",
+    type: "selectWhereDeepMultiple",
     columns: [
       "id",
       "email",
@@ -23,7 +23,7 @@ router.get("/", permit(3), (req, res) => {
       "role_id",
       "created_at",
       "group_id",
-      "terms_accepted"
+      "terms_accepted",
     ],
     conditions: [
       {
@@ -32,10 +32,21 @@ router.get("/", permit(3), (req, res) => {
         value: 4,
       },
     ],
-    joinTable: "groups",
-    joinColumns: ["trainer_id", "lesson_day", "lesson_hour"],
-    joinConditions: [
-      { field: "users.group_id", condition: "=", value: "groups.id" },
+    join: [
+      {
+        table: {name: "groups", newName: "groups"},
+        columns: ["trainer_id", "lesson_day", "lesson_hour"],
+        conditions: [
+          { field: "users.group_id", condition: "=", value: "groups.id" },
+        ],
+      },
+      {
+        table: {name: "users", newName: "trainers"},
+        columns: ["name", "surname"],
+        conditions: [
+          { field: "groups.trainer_id", condition: "=", value: "trainers.id" },
+        ],
+      },
     ],
   };
   db(options);

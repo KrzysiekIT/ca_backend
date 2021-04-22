@@ -69,6 +69,38 @@ const makeDbQuery = () => {
       )} WHERE ${prepare.updateConditions(conditions)};`;
       return dbQuery;
     },
+    selectWhereDeepMultiple: ({ columns, table, conditions, join }) => {
+      const joinedColumnsToSelect = join.reduce((joinedColumns, singleJoin) => {
+        return [
+          ...joinedColumns,
+          ...singleJoin.columns.map(
+            (column) =>
+              `${singleJoin.table.name}.${column} as ${singleJoin.table.newName}_${column}`
+          ),
+        ];
+      }, []);
+
+      const leftJoin = join.reduce((joinedColumns, singleJoin) => {
+        return [
+          ...joinedColumns,
+          `LEFT JOIN ${
+            singleJoin.table.name === singleJoin.table.newName
+              ? singleJoin.table.name
+              : singleJoin.table.name + " " + singleJoin.table.newName
+          } ON ${prepare.joinConditions(singleJoin.conditions)}`,
+        ];
+      }, []);
+
+      columns = columns.map((column) => `${table}.${column}`);
+
+      const columnsToSelect = [...columns, ...joinedColumnsToSelect];
+      const dbQuery = `SELECT ${columnsToSelect.join(
+        ", "
+      )} FROM ${table} ${leftJoin.join(" ")} WHERE ${prepare.updateConditions(
+        conditions
+      )};`;
+      return dbQuery;
+    },
     create: ({ table, values }) => {
       return `INSERT INTO ${table} ${prepare.create(values)};`;
     },
