@@ -11,10 +11,8 @@ router.get("/", permit(3), (req, res) => {
     type: "select",
     columns: [
       "id",
-      "email",
       "name",
       "surname",
-      "phone",
       "role_id",
       "created_at",
     ],
@@ -29,10 +27,8 @@ router.get("/:id/", permit(3), (req, res) => {
     type: "selectWhere",
     columns: [
       "id",
-      "email",
       "name",
       "surname",
-      "phone",
       "role_id",
       "created_at",
     ],
