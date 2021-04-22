@@ -71,6 +71,18 @@ router.get("/:id/", permit(3), (req, res) => {
   db(options);
 });
 
+
+router.patch("/:id/", permit(3), (req, res) => {
+  const options = {
+    cb: cb(res),
+    table: "users",
+    type: "update",
+    newValues: req.body.newValues,
+    conditions: [{ field: "id", condition: "=", value: req.params.id }],
+  };
+  db(options);
+});
+
 router.post("/", permit(3), (req, res) => {
   const options = {
     cb: cb(res),
