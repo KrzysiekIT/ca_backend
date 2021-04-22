@@ -24,6 +24,7 @@ router.get("/", permit(3), (req, res) => {
       "created_at",
       "group_id",
       "terms_accepted",
+      "link_sent",
     ],
     conditions: [
       {
