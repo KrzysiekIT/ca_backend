@@ -35,14 +35,14 @@ router.get("/", permit(3), (req, res) => {
     ],
     join: [
       {
-        table: {name: "groups", newName: "groups"},
+        table: { name: "groups", newName: "groups" },
         columns: ["trainer_id", "lesson_day", "lesson_hour"],
         conditions: [
           { field: "users.group_id", condition: "=", value: "groups.id" },
         ],
       },
       {
-        table: {name: "users", newName: "trainers"},
+        table: { name: "users", newName: "trainers" },
         columns: ["name", "surname"],
         conditions: [
           { field: "groups.trainer_id", condition: "=", value: "trainers.id" },
