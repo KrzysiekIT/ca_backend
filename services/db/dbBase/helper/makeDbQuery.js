@@ -75,7 +75,7 @@ const makeDbQuery = () => {
           ...joinedColumns,
           ...singleJoin.columns.map(
             (column) =>
-              `${singleJoin.table.name}.${column} as ${singleJoin.table.newName}_${column}`
+              `${singleJoin.table.newName}.${column} as ${singleJoin.table.newName}_${column}`
           ),
         ];
       }, []);
