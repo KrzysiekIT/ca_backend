@@ -1,7 +1,7 @@
 START TRANSACTION;
 CREATE TABLE IF NOT EXISTS `groups` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `name` varchar(255) NOT NULL,
+    `label` varchar(255) NOT NULL,
     `trainer_id` int(11) NOT NULL,
     `lesson_day` tinyint(3),
     `lesson_hour` varchar(255),
