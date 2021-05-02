@@ -11,6 +11,7 @@ router.get("/",  (req, res) => {
     type: "selectWhereDeepMultiple",
     columns: [
       "id",
+      "level",
       "label",
       "trainer_id",
       "lesson_day",
