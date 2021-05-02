@@ -16,6 +16,7 @@ router.get("/",  (req, res) => {
       "trainer_id",
       "lesson_day",
       "lesson_hour",
+      "lesson_tool",
       "lesson_link",
     ],
     conditions: [
