@@ -38,54 +38,6 @@ router.get("/",  (req, res) => {
   db(options);
 });
 
-router.get("/", permit(3), (req, res) => {
-  const options = {
-    cb: cb(res),
-    table: "users",
-    type: "selectWhereDeepMultiple",
-    columns: [
-      "id",
-      "email",
-      "name",
-      "surname",
-      "birth_year",
-      "parent_full_name",
-      "parent_email",
-      "parent_phone_number",
-      "status",
-      "start_at",
-      "role_id",
-      "created_at",
-      "group_id",
-      "terms_accepted",
-      "link_sent",
-    ],
-    conditions: [
-      {
-        field: "`users`.`role_id`",
-        condition: "=",
-        value: 4,
-      },
-    ],
-    join: [
-      {
-        table: { name: "groups", newName: "groups" },
-        columns: ["trainer_id", "lesson_day", "lesson_hour"],
-        conditions: [
-          { field: "users.group_id", condition: "=", value: "groups.id" },
-        ],
-      },
-      {
-        table: { name: "users", newName: "trainers" },
-        columns: ["name", "surname"],
-        conditions: [
-          { field: "groups.trainer_id", condition: "=", value: "trainers.id" },
-        ],
-      },
-    ],
-  };
-  db(options);
-});
 
 router.get("/:id/", permit(3), (req, res) => {
   const options = {
@@ -94,6 +46,7 @@ router.get("/:id/", permit(3), (req, res) => {
     type: "selectWhere",
     columns: [
       "id",
+      "level",
       "label",
       "trainer_id",
       "lesson_day",
@@ -108,7 +61,7 @@ router.get("/:id/", permit(3), (req, res) => {
 router.patch("/:id/", permit(3), (req, res) => {
   const options = {
     cb: cb(res),
-    table: "users",
+    table: "groups",
     type: "update",
     newValues: req.body.newValues,
     conditions: [{ field: "id", condition: "=", value: req.params.id }],
@@ -119,7 +72,7 @@ router.patch("/:id/", permit(3), (req, res) => {
 router.post("/", permit(3), (req, res) => {
   const options = {
     cb: cb(res),
-    table: "users",
+    table: "groups",
     type: "create",
     values: req.body.values,
   };
@@ -129,7 +82,7 @@ router.post("/", permit(3), (req, res) => {
 router.put("/:id/", permit(3), (req, res) => {
   const options = {
     cb: cb(res),
-    table: "users",
+    table: "groups",
     type: "update",
     newValues: req.body.newValues,
     conditions: [{ field: "id", condition: "=", value: req.params.id }],
@@ -140,7 +93,7 @@ router.put("/:id/", permit(3), (req, res) => {
 router.delete("/:id/", permit(3), (req, res) => {
   const options = {
     cb: cb(res),
-    table: "users",
+    table: "groups",
     type: "remove",
     conditions: [{ field: "id", condition: "=", value: req.params.id }],
   };
