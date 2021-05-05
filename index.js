@@ -27,6 +27,9 @@ try {
       console.log(message);
       io.emit("message", message);
     });
+    socket.on("game", (message) => {
+      io.emit("game", message);
+    });
   });
 
   app.listen(process.env.PORT);

@@ -23,7 +23,7 @@ routes.post("/login", (req, res) => {
     });
   }
   db.query(
-    "SELECT users.*, roles.bit as role_bit, roles.name as role_name FROM `users` LEFT JOIN roles ON users.id = roles.id WHERE `users`.`email` = ?;",
+    "SELECT users.*, roles.bit as role_bit, roles.name as role_name FROM `users` LEFT JOIN roles ON users.role_id = roles.id WHERE `users`.`email` = ?;",
     email,
     (error, results) => {
       if (error) {
