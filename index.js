@@ -15,6 +15,7 @@ try {
   );
 
   app.use("/api", router);
+  app.use('/file', express.static(__dirname + '/files'));
 
   io = require("socket.io")(process.env.SOCKET_PORT, {
     cors: {
