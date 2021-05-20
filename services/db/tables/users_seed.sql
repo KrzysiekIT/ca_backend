@@ -160,5 +160,23 @@ VALUES (
         1,
         0,
         0
+    ),
+    (
+        9,
+        'krzykarc@gmail.com',
+        '$2a$10$pyMYtPfIvE.PAboF3cIx9.IsyW73voMIRxFINohzgeV0I2BxwnrEu',
+        'Krzysztof',
+        'Karczewski',
+        1996,
+        'Henryk Karczewski',
+        'Henryk@truskawki.roza',
+        '123456789',
+        1,
+        '2018-01-21 00:00:00',
+        4,
+        '2018-01-21 00:00:00',
+        1,
+        0,
+        0
     );
 COMMIT;
