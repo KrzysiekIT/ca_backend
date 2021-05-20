@@ -73,7 +73,7 @@ router.get("/:id/", permit(3), (req, res) => {
 });
 
 
-router.patch("/:id/", permit(3), (req, res) => {
+router.patch("/:id/", permit(19), (req, res) => {
   const options = {
     cb: cb(res),
     table: "users",

@@ -30,8 +30,8 @@ module.exports = ({ pageAuthLevel, request, response, next }) => {
     if (!userBitLevel) {
       return res.status(401).json({ message: "Unauthorized" });
     } else if (!(userBitLevel & pageAuthLevel)) {
-      if (pageAuthLevel & 15) {
-        if (result?.id === +request.params.userId) {
+      if (pageAuthLevel & 16) {
+        if (result?.id === +request.params.id) {
           next();
         } else {
           response.status(403).json({ message: "Forbidden" });
