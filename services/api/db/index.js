@@ -34,6 +34,7 @@ routes.get("/seed", (req, res) => {
     "lessons",
     "presences",
     "lessons_missed",
+    "terms",
   ];
   let dbQuery = "";
   tables.forEach((table) => {
