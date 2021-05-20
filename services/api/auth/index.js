@@ -45,37 +45,30 @@ routes.post("/login", (req, res) => {
             .json({ type: "error", message: "bcrypt error", error });
         }
         if (result) {
+          const userData = {
+            id: user.id,
+            name: user.name,
+            surname: user.surname,
+            email: user.email,
+            birth_year: user.birth_year,
+            parent_full_name: user.parent_full_name,
+            parent_email: user.parent_email,
+            parent_phone_number: user.parent_phone_number,
+            status: user.status,
+            start_at: user.start_at,
+            created_at: user.created_at,
+            group_id: user.group_id,
+            terms_accepted: user.terms_accepted,
+            link_sent: user.link_sent,
+            role: { name: user.role_name, bit: user.role_bit },
+          };
           res.json({
             type: "success",
             message: "User logged in.",
-            user: {
-              id: user.id,
-              name: user.name,
-              surname: user.surname,
-              email: user.email,
-              birth_year: user.birth_year,
-              parent_full_name: user.parent_full_name,
-              parent_email: user.parent_email,
-              parent_phone_number: user.parent_phone_number,
-              status: user.status,
-              start_at: user.start_at,
-              created_at: user.created_at,
-              group_id: user.group_id,
-              terms_accepted: user.terms_accepted,
-              link_sent: user.link_sent,
-              role: { name: user.role_name, bit: user.role_bit },
-            },
-            token: jwt.sign(
-              {
-                id: user.id,
-                email: user.email,
-                role: { name: user.role_name, bit: user.role_bit },
-              },
-              jwtToken,
-              {
-                expiresIn: "7d",
-              }
-            ),
+            user: userData,
+            token: jwt.sign(userData, jwtToken, {
+              expiresIn: "7d",
+            }),
           });
         } else {
           return res
