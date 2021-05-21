@@ -103,6 +103,68 @@ routes.get("/me", (req, res) => {
   });
 });
 
+routes.post("/refresh", (req, res) => {
+  const token = req.headers["x-access-token"];
+  if (!token) {
+    return res
+      .status(400)
+      .json({ type: "error", message: "x-access-token header not found." });
+  }
+  jwt.verify(token, jwtToken, (error, result) => {
+    if (error) {
+      return res.status(403).json({
+        type: "error",
+        message: "Provided token is invalid.",
+        error,
+      });
+    }
+
+    db.query(
+      "SELECT users.*, roles.bit as role_bit, roles.name as role_name FROM `users` LEFT JOIN roles ON users.role_id = roles.id WHERE `users`.`id` = ?;",
+      result?.id,
+      (error, results) => {
+        if (error) {
+          return res
+            .status(500)
+            .json({ type: "error", message: "db error", error });
+        }
+        const user = results[0];
+        if (result) {
+          const userData = {
+            id: user.id,
+            name: user.name,
+            surname: user.surname,
+            email: user.email,
+            birth_year: user.birth_year,
+            parent_full_name: user.parent_full_name,
+            parent_email: user.parent_email,
+            parent_phone_number: user.parent_phone_number,
+            status: user.status,
+            start_at: user.start_at,
+            created_at: user.created_at,
+            group_id: user.group_id,
+            terms_accepted: user.terms_accepted,
+            link_sent: user.link_sent,
+            role: { name: user.role_name, bit: user.role_bit },
+          };
+          res.json({
+            type: "success",
+            message: "User logged in.",
+            user: userData,
+            token: jwt.sign(userData, jwtToken, {
+              expiresIn: "7d",
+            }),
+          });
+        } else {
+          return res
+            .status(403)
+            .json({ type: "error", message: "Password is incorrect." });
+        }
+      }
+    );
+  });
+});
+
 routes.get("/users", (req, res) => {
   const pageBitLevel = 1;
   const token = req.headers["x-access-token"];
