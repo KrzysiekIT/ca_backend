@@ -28,9 +28,9 @@ routes.get("/drop", (req, res) => {
 routes.get("/seed", (req, res) => {
   const tables = [
     "roles",
+    "groups",
     "users",
     "payments",
-    "groups",
     "lessons",
     "presences",
     "lessons_missed",

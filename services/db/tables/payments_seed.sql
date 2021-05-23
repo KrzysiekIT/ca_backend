@@ -1,5 +1,8 @@
 START TRANSACTION;
-INSERT INTO `payments` (`id`, `user_id`, `amount`, `order`, `created_at`)
-VALUES (1, 5, 100, 1, NOW()),
-    (2, 5, 100, 2, NOW());
+INSERT INTO `payments` (`user_id`, `amount`, `order_number`, `created_at`)
+VALUES (5, 100, 1, NOW()),
+    (5, 100, 2, NOW()),
+    (5, 100, 3, NOW()),
+    (5, 100, 4, NOW()),
+    (5, 100, 5, NOW());
 COMMIT;

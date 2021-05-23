@@ -42,6 +42,7 @@ const makeDbQuery = () => {
   };
   const types = {
     select: ({ columns, table }) => {
+      console.log(`SELECT ${columns.join(", ")} FROM ${table};`)
       return `SELECT ${columns.join(", ")} FROM ${table};`;
     },
     selectWhere: ({ columns, table, conditions }) => {
