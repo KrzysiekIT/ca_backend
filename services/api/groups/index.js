@@ -40,7 +40,7 @@ router.get("/",  (req, res) => {
 });
 
 
-router.get("/:id/", permit(3), (req, res) => {
+router.get("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "groups",

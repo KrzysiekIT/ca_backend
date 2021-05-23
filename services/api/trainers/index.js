@@ -14,6 +14,7 @@ router.get("/", permit(3), (req, res) => {
       "email",
       "name",
       "surname",
+      "phone_number",
       "role_id",
       "created_at",
       "group_id",
@@ -45,21 +46,49 @@ router.get("/", permit(3), (req, res) => {
   db(options);
 });
 
-router.get("/:id/", permit(3), (req, res) => {
+router.get("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "users",
-    type: "selectWhere",
+    type: "selectWhereDeepMultiple",
     columns: [
       "id",
       "email",
       "name",
       "surname",
-      "phone",
+      "phone_number",
       "role_id",
       "created_at",
+      "group_id",
     ],
-    conditions: [{ field: "id", condition: "=", value: req.params.id }],
+    conditions: [
+      {
+        field: "`users`.`role_id`",
+        condition: "=",
+        value: 3,
+      },
+      {
+        field: "`users`.`id`",
+        condition: "=",
+        value: req.params.id,
+      },
+    ],
+    join: [
+      {
+        table: { name: "groups", newName: "groups" },
+        columns: ["trainer_id", "lesson_day", "lesson_hour"],
+        conditions: [
+          { field: "users.group_id", condition: "=", value: "groups.id" },
+        ],
+      },
+      {
+        table: { name: "users", newName: "trainers" },
+        columns: ["name", "surname"],
+        conditions: [
+          { field: "groups.trainer_id", condition: "=", value: "trainers.id" },
+        ],
+      },
+    ],
   };
   db(options);
 });
