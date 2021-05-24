@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS `users` (
     `parent_full_name` varchar(255) DEFAULT "",
     `parent_email` varchar(255) DEFAULT "",
     `parent_phone_number` varchar(255) DEFAULT "",
+    `lesson_missed_link` varchar(255) DEFAULT "",
     `status` tinyint(3) DEFAULT 1,
     `start_at` datetime DEFAULT NULL,
     `role_id` int(11) NOT NULL,
@@ -20,6 +21,8 @@ CREATE TABLE IF NOT EXISTS `users` (
     `group_id` int(11) DEFAULT 1,
     `terms_accepted` tinyint(1) DEFAULT 0,
     `link_sent` tinyint(1) DEFAULT 0,
+    `abacus_level` int(11) DEFAULT 1,
+    `anzan_level` int(11) DEFAULT 1,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`role_id`) REFERENCES `roles`(`id`),
     FOREIGN KEY (`group_id`) REFERENCES `groups`(`id`)

@@ -8,6 +8,9 @@ CREATE TABLE IF NOT EXISTS `groups` (
     `lesson_hour` varchar(255) DEFAULT "",
     `lesson_tool` varchar(255) DEFAULT "",
     `lesson_link` varchar(255) DEFAULT "",
+    `last_lesson_number` int(11) DEFAULT 1,
+    `abacus_level` int(11) DEFAULT 1,
+    `anzan_level` int(11) DEFAULT 1,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 COMMIT;

@@ -4,7 +4,7 @@ const db = require("@/db/dbBase");
 const cb = require("@/api/helper");
 const permit = require("@/auth/permit");
 
-router.get("/",  (req, res) => {
+router.get("/", (req, res) => {
   const options = {
     cb: cb(res),
     table: "groups",
@@ -39,7 +39,6 @@ router.get("/",  (req, res) => {
   db(options);
 });
 
-
 router.get("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
@@ -53,6 +52,9 @@ router.get("/:id/", permit(15), (req, res) => {
       "lesson_day",
       "lesson_hour",
       "lesson_link",
+      "last_lesson_number",
+      "abacus_level",
+      "anzan_level",
     ],
     conditions: [{ field: "id", condition: "=", value: req.params.id }],
   };
