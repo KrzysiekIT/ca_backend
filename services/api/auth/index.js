@@ -60,6 +60,9 @@ routes.post("/login", (req, res) => {
             group_id: user.group_id,
             terms_accepted: user.terms_accepted,
             link_sent: user.link_sent,
+            lesson_missed_link: user.lesson_missed_link,
+            abacus_level: user.abacus_level,
+            anzan_level: user.anzan_level,
             role: { name: user.role_name, bit: user.role_bit },
           };
           res.json({

@@ -21,8 +21,8 @@ CREATE TABLE IF NOT EXISTS `users` (
     `group_id` int(11) DEFAULT 1,
     `terms_accepted` tinyint(1) DEFAULT 0,
     `link_sent` tinyint(1) DEFAULT 0,
-    `abacus_level` int(11) DEFAULT 1,
-    `anzan_level` int(11) DEFAULT 1,
+    `abacus_level` int(11) DEFAULT 13,
+    `anzan_level` int(11) DEFAULT 17,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`role_id`) REFERENCES `roles`(`id`),
     FOREIGN KEY (`group_id`) REFERENCES `groups`(`id`)
