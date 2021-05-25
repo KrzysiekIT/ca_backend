@@ -63,6 +63,12 @@ routes.post("/login", (req, res) => {
             lesson_missed_link: user.lesson_missed_link,
             abacus_level: user.abacus_level,
             anzan_level: user.anzan_level,
+            street: user.street,
+            city: user.city,
+            postal_code: user.postal_code,
+            parent_full_name: user.parent_full_name,
+            parent_email: user.parent_email,
+            parent_phone_number: user.parent_phone_number,
             role: { name: user.role_name, bit: user.role_bit },
           };
           res.json({
@@ -151,6 +157,12 @@ routes.post("/refresh", (req, res) => {
             lesson_missed_link: user.lesson_missed_link,
             abacus_level: user.abacus_level,
             anzan_level: user.anzan_level,
+            street: user.street,
+            city: user.city,
+            postal_code: user.postal_code,
+            parent_full_name: user.parent_full_name,
+            parent_email: user.parent_email,
+            parent_phone_number: user.parent_phone_number,
             role: { name: user.role_name, bit: user.role_bit },
           };
           res.json({
