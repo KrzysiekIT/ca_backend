@@ -7,7 +7,7 @@ const permit = require("@/auth/permit");
 router.get("/", (req, res) => {
   const options = {
     cb: cb(res),
-    table: "groups",
+    table: "training_groups",
     type: "selectWhereDeepMultiple",
     columns: [
       "id",
@@ -31,7 +31,7 @@ router.get("/", (req, res) => {
         table: { name: "users", newName: "trainers" },
         columns: ["name", "surname"],
         conditions: [
-          { field: "groups.trainer_id", condition: "=", value: "trainers.id" },
+          { field: "training_groups.trainer_id", condition: "=", value: "trainers.id" },
         ],
       },
     ],
@@ -42,7 +42,7 @@ router.get("/", (req, res) => {
 router.get("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
-    table: "groups",
+    table: "training_groups",
     type: "selectWhere",
     columns: [
       "id",
@@ -64,7 +64,7 @@ router.get("/:id/", permit(15), (req, res) => {
 router.patch("/:id/", permit(3), (req, res) => {
   const options = {
     cb: cb(res),
-    table: "groups",
+    table: "training_groups",
     type: "update",
     newValues: req.body.newValues,
     conditions: [{ field: "id", condition: "=", value: req.params.id }],
@@ -75,7 +75,7 @@ router.patch("/:id/", permit(3), (req, res) => {
 router.post("/", permit(3), (req, res) => {
   const options = {
     cb: cb(res),
-    table: "groups",
+    table: "training_groups",
     type: "create",
     values: req.body.values,
   };
@@ -85,7 +85,7 @@ router.post("/", permit(3), (req, res) => {
 router.put("/:id/", permit(3), (req, res) => {
   const options = {
     cb: cb(res),
-    table: "groups",
+    table: "training_groups",
     type: "update",
     newValues: req.body.newValues,
     conditions: [{ field: "id", condition: "=", value: req.params.id }],
@@ -96,7 +96,7 @@ router.put("/:id/", permit(3), (req, res) => {
 router.delete("/:id/", permit(3), (req, res) => {
   const options = {
     cb: cb(res),
-    table: "groups",
+    table: "training_groups",
     type: "remove",
     conditions: [{ field: "id", condition: "=", value: req.params.id }],
   };

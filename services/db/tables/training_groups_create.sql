@@ -1,5 +1,5 @@
 START TRANSACTION;
-CREATE TABLE IF NOT EXISTS `groups` (
+CREATE TABLE IF NOT EXISTS `training_groups` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `level` tinyint(3) DEFAULT 1,
     `label` varchar(255)  DEFAULT "",

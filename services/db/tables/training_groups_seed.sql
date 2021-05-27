@@ -1,5 +1,5 @@
 START TRANSACTION;
-INSERT INTO `groups` (`id`,`level` ,`label`, `trainer_id`, `lesson_day`, `lesson_hour`, `lesson_tool`, `lesson_link`)
+INSERT INTO `training_groups` (`id`,`level` ,`label`, `trainer_id`, `lesson_day`, `lesson_hour`, `lesson_tool`, `lesson_link`)
 VALUES (1, 1, 'cz. 18:00' , 3, 4, '18:00', 'zoom','https://google.com'),
     (2, 2, 'pt. 11:15', 3, 1, '11:15', 'zoom','https://google.pl'),
     (3, 1, 'cz. 00:15', 3, 2, '00:15', 'zoom','https://google.org'),
