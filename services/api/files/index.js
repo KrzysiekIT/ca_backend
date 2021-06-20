@@ -42,9 +42,10 @@ router.delete("/:id/", permit(3), (req, res) => {
 router.post("/", (req, res) => {
   const form = new formidable.IncomingForm();
   form.parse(req, function (err, fields, files) {
-    var oldPath = files.new_file.path;
+    console.log(fields)
+    const oldPath = files.new_file.path;
     const newPath = `${servicePath}/../files/` + files.new_file.name;
-    var rawData = fs.readFileSync(oldPath);
+    const rawData = fs.readFileSync(oldPath);
 
     fs.writeFile(newPath, rawData, function (err) {
       if (err) console.log(err);
@@ -52,7 +53,7 @@ router.post("/", (req, res) => {
         cb: cb(res),
         table: "files",
         type: "create",
-        values: { ...req.body.values, name: files.new_file.name },
+        values: { ...fields, name: files.new_file.name },
       };
       db(options);
     });
