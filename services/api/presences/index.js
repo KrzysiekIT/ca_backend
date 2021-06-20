@@ -18,7 +18,7 @@ router.get("/:userId/", permit(24), (req, res) => {
       },
     ],
     joinTable: "lessons",
-    joinColumns: ["date", "month_number", "order_in_month"],
+    joinColumns: ["date", "lesson_number"],
     joinConditions: [
       { field: "presences.lesson_id", condition: "=", value: "lessons.id" },
     ],
