@@ -20,6 +20,13 @@ const makeDbQuery = () => {
         })
         .join(" AND ");
     },
+    updateConditionsWhereIn: (conditions) => {
+      return conditions
+        .map(({ field, condition, value }) => {
+          return `${field} ${condition} ${value}`;
+        })
+        .join(" AND ");
+    },
     joinConditions: (conditions) => {
       return conditions
         .map(({ field, condition, value }) => {
@@ -42,13 +49,17 @@ const makeDbQuery = () => {
   };
   const types = {
     select: ({ columns, table }) => {
-      console.log(`SELECT ${columns.join(", ")} FROM ${table};`)
       return `SELECT ${columns.join(", ")} FROM ${table};`;
     },
     selectWhere: ({ columns, table, conditions }) => {
       return `SELECT ${columns.join(
         ", "
       )} FROM ${table} WHERE ${prepare.updateConditions(conditions)};`;
+    },
+    selectWhereIn: ({ columns, table, conditions }) => {
+      return `SELECT ${columns.join(
+        ", "
+      )} FROM ${table} WHERE ${prepare.updateConditionsWhereIn(conditions)};`;
     },
     selectWhereDeep: ({
       columns,
@@ -103,7 +114,11 @@ const makeDbQuery = () => {
       return dbQuery;
     },
     create: ({ table, values }) => {
-      return `INSERT INTO ${table} ${prepare.create(values)}; SELECT id, ${Object.keys(values).join(", ")} FROM ${table} WHERE id=LAST_INSERT_ID()`;
+      return `INSERT INTO ${table} ${prepare.create(
+        values
+      )}; SELECT id, ${Object.keys(values).join(
+        ", "
+      )} FROM ${table} WHERE id=LAST_INSERT_ID()`;
     },
     remove: ({ table, conditions }) => {
       return `DELETE FROM ${table} WHERE ${prepare.updateConditions(

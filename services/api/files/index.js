@@ -42,7 +42,6 @@ router.delete("/:id/", permit(3), (req, res) => {
 router.post("/", (req, res) => {
   const form = new formidable.IncomingForm();
   form.parse(req, function (err, fields, files) {
-    console.log(fields)
     const oldPath = files.new_file.path;
     const newPath = `${servicePath}/../files/` + files.new_file.name;
     const rawData = fs.readFileSync(oldPath);

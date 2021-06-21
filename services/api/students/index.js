@@ -56,6 +56,27 @@ router.get("/", permit(3), (req, res) => {
   db(options);
 });
 
+router.get("/multiplegroups/:ids/", (req, res) => {
+  const options = {
+    cb: cb(res),
+    table: "users",
+    type: "selectWhereIn",
+    columns: [
+      "id",
+      "group_id",
+      "email",
+      "name",
+      "surname",
+      "parent_phone_number",
+    ],
+    conditions: [
+      { field: "group_id", condition: "IN", value: `(${req.params.ids})` },
+      { field: "role_id", condition: "=", value: "4" },
+    ],
+  };
+  db(options);
+});
+
 router.get("/:id/", permit(3), (req, res) => {
   const options = {
     cb: cb(res),
@@ -76,7 +97,6 @@ router.get("/:id/", permit(3), (req, res) => {
 });
 
 router.patch("/:id/", permit(19), (req, res) => {
-  console.log(req.body.newValues)
   const options = {
     cb: cb(res),
     table: "users",
