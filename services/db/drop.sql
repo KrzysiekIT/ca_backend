@@ -10,6 +10,7 @@ DROP TABLES `roles`,
 `terms`,
 `abacus`,
 `movies`,
-`files`;
+`files`,
+`lessons_demo`;
 SET FOREIGN_KEY_CHECKS = 1;
 COMMIT;

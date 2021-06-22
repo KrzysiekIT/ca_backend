@@ -7,7 +7,7 @@ const permit = require("@/auth/permit");
 const jwt = require("jsonwebtoken");
 const jwtToken = process.env.JWT_TOKEN;
 
-router.get("/", permit(3), (req, res) => {
+router.get("/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "users",
@@ -156,7 +156,7 @@ router.patch("/accept-terms/:id/", permit(19), (req, res) => {
   });
 });
 
-router.post("/", permit(3), (req, res) => {
+router.post("/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "users",
@@ -166,7 +166,7 @@ router.post("/", permit(3), (req, res) => {
   db(options);
 });
 
-router.put("/:id/", permit(3), (req, res) => {
+router.put("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "users",
@@ -177,7 +177,7 @@ router.put("/:id/", permit(3), (req, res) => {
   db(options);
 });
 
-router.delete("/:id/", permit(3), (req, res) => {
+router.delete("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "users",

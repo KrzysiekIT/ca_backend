@@ -7,7 +7,7 @@ const permit = require("@/auth/permit");
 router.get("/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
-    table: "movies",
+    table: "lessons_demo",
     type: "select",
     columns: ["id", "description_pl", "description_en", "link", "exercise"],
   };
@@ -17,7 +17,7 @@ router.get("/", permit(15), (req, res) => {
 router.put("/:id/", permit(3), (req, res) => {
   const options = {
     cb: cb(res),
-    table: "movies",
+    table: "lessons_demo",
     type: "update",
     newValues: req.body.newValues,
     conditions: [{ field: "id", condition: "=", value: req.params.id }],
@@ -28,7 +28,7 @@ router.put("/:id/", permit(3), (req, res) => {
 router.delete("/:id/", permit(3), (req, res) => {
   const options = {
     cb: cb(res),
-    table: "movies",
+    table: "lessons_demo",
     type: "remove",
     conditions: [{ field: "id", condition: "=", value: req.params.id }],
   };
@@ -38,7 +38,7 @@ router.delete("/:id/", permit(3), (req, res) => {
 router.post("/", permit(3), (req, res) => {
   const options = {
     cb: cb(res),
-    table: "movies",
+    table: "lessons_demo",
     type: "create",
     values: req.body.values,
   };
