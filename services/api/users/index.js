@@ -4,7 +4,7 @@ const db = require("@/db/dbBase");
 const cb = require("@/api/helper");
 const permit = require("@/auth/permit");
 
-router.get("/", permit(3), (req, res) => {
+router.get("/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "users",
@@ -20,7 +20,7 @@ router.get("/", permit(3), (req, res) => {
   db(options);
 });
 
-router.get("/:id/", permit(3), (req, res) => {
+router.get("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "users",
@@ -37,7 +37,7 @@ router.get("/:id/", permit(3), (req, res) => {
   db(options);
 });
 
-router.post("/", permit(3), (req, res) => {
+router.post("/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "users",
@@ -47,7 +47,7 @@ router.post("/", permit(3), (req, res) => {
   db(options);
 });
 
-router.put("/:id/", permit(3), (req, res) => {
+router.put("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "users",
@@ -58,7 +58,7 @@ router.put("/:id/", permit(3), (req, res) => {
   db(options);
 });
 
-router.delete("/:id/", permit(3), (req, res) => {
+router.delete("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "users",

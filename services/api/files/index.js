@@ -8,7 +8,7 @@ const path = require("path");
 const formidable = require("formidable");
 const servicePath = require("@/path");
 
-router.get("/", permit(3), (req, res) => {
+router.get("/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "files",
@@ -18,7 +18,7 @@ router.get("/", permit(3), (req, res) => {
   db(options);
 });
 
-router.put("/:id/", permit(3), (req, res) => {
+router.put("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "files",
@@ -29,7 +29,7 @@ router.put("/:id/", permit(3), (req, res) => {
   db(options);
 });
 
-router.delete("/:id/", permit(3), (req, res) => {
+router.delete("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "files",

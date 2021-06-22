@@ -37,7 +37,7 @@ router.get("/last/:groupIds", (req, res) => {
   });
 });
 
-router.put("/:id/", permit(3), (req, res) => {
+router.put("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "lessons",
@@ -48,7 +48,7 @@ router.put("/:id/", permit(3), (req, res) => {
   db(options);
 });
 
-router.delete("/:id/", permit(3), (req, res) => {
+router.delete("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "lessons",
@@ -137,7 +137,7 @@ router.post("/new/:groupId", permit(15), (req, res) => {
   });
 });
 
-router.post("/", permit(3), (req, res) => {
+router.post("/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "lessons",

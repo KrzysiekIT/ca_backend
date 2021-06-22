@@ -124,7 +124,7 @@ router.get("/:id/", permit(15), (req, res) => {
   db(options);
 });
 
-router.patch("/:id/", permit(3), (req, res) => {
+router.patch("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "training_groups",
@@ -135,7 +135,7 @@ router.patch("/:id/", permit(3), (req, res) => {
   db(options);
 });
 
-router.post("/", permit(3), (req, res) => {
+router.post("/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "training_groups",
@@ -145,7 +145,7 @@ router.post("/", permit(3), (req, res) => {
   db(options);
 });
 
-router.put("/:id/", permit(3), (req, res) => {
+router.put("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "training_groups",
@@ -156,7 +156,7 @@ router.put("/:id/", permit(3), (req, res) => {
   db(options);
 });
 
-router.delete("/:id/", permit(3), (req, res) => {
+router.delete("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "training_groups",

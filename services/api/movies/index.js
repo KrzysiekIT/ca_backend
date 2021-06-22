@@ -14,7 +14,7 @@ router.get("/", permit(15), (req, res) => {
   db(options);
 });
 
-router.put("/:id/", permit(3), (req, res) => {
+router.put("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "lessons_demo",
@@ -25,7 +25,7 @@ router.put("/:id/", permit(3), (req, res) => {
   db(options);
 });
 
-router.delete("/:id/", permit(3), (req, res) => {
+router.delete("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "lessons_demo",
@@ -35,7 +35,7 @@ router.delete("/:id/", permit(3), (req, res) => {
   db(options);
 });
 
-router.post("/", permit(3), (req, res) => {
+router.post("/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "lessons_demo",

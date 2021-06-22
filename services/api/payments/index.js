@@ -15,7 +15,7 @@ router.get("/", permit(15), (req, res) => {
   db(options);
 });
 
-router.get("user/:id/", permit(15), (req, res) => {
+router.get("/user/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
     table: "payments",
@@ -26,8 +26,8 @@ router.get("user/:id/", permit(15), (req, res) => {
   db(options);
 });
 
-router.patch("user/:id/:order_number", permit(3), (req, res) => {
-  dbQuery = `INSERT INTO table (user_id, order_number, amount, created_at) VALUES(${req.params.id}, ${req.params.orderNumber}, ${req.body.newValues.amount}, ${req.body.newValues.createdAt}) ON DUPLICATE KEY UPDATE amount=${req.body.newValues.amount}, created_at=${req.body.newValues.createdAt}`;
+router.patch("/update/:id/:order_number", permit(15), (req, res) => {
+  dbQuery = `INSERT INTO payments (user_id, order_number, amount, created_at) VALUES(${req.params.id}, ${req.params.order_number}, ${req.body.newValues.amount}, '${req.body.newValues.createdAt}') ON DUPLICATE KEY UPDATE amount=${req.body.newValues.amount}, created_at='${req.body.newValues.createdAt}'`;
   dbQueryOnly.query(dbQuery, (error, results) => {
     if (error) {
       return res
