@@ -25,6 +25,6 @@ CREATE TABLE IF NOT EXISTS `users` (
     `anzan_level` int(11) DEFAULT 17,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`role_id`) REFERENCES `roles`(`id`),
-    FOREIGN KEY (`group_id`) REFERENCES `groups`(`id`)
+    FOREIGN KEY (`group_id`) REFERENCES `training_groups`(`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 COMMIT;

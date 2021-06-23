@@ -2,10 +2,10 @@ const jwt = require("jsonwebtoken");
 const jwtToken = process.env.JWT_TOKEN;
 
 const checkOwnership = {
-  group: [{ table: "groups", field: "trainer_id" }],
+  group: [{ table: "training_groups", field: "trainer_id" }],
   lesson: [
-    { table: "groups", field: "group_id" },
-    { table: "groups", field: "trainer_id" },
+    { table: "training_groups", field: "group_id" },
+    { table: "training_groups", field: "trainer_id" },
   ],
 };
 
