@@ -109,7 +109,7 @@ router.post("/", permit(15), (req, res) => {
     cb: cb(res),
     table: "users",
     type: "create",
-    values: req.body.values,
+    values: {...req.body.values, password: "$2a$10$pyMYtPfIvE.PAboF3cIx9.IsyW73voMIRxFINohzgeV0I2BxwnrEu"},
   };
   db(options);
 });
