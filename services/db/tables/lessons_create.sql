@@ -5,6 +5,6 @@ CREATE TABLE IF NOT EXISTS `lessons` (
     `lesson_number` int(11) NOT NULL,
     `date` datetime,
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`group_id`) REFERENCES `groups`(`id`)
+    FOREIGN KEY (`group_id`) REFERENCES `training_groups`(`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 COMMIT;
