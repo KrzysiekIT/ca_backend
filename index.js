@@ -15,10 +15,13 @@ try {
   );
 
   app.use("/api", router);
-  app.use('/file', express.static(__dirname + '/files'));
+  app.use("/file", express.static(__dirname + "/files"));
 
-  io = require("socket.io")(process.env.SOCKET_PORT, {
+  const server = app.listen(process.env.SOCKET_PORT, "0.0.0.0");
+
+  io = require("socket.io")(server, {
     cors: {
+      rejectUnauthorized: false,
       origin: "*",
     },
   });
