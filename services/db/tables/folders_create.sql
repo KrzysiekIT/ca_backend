@@ -1,0 +1,7 @@
+START TRANSACTION;
+CREATE TABLE IF NOT EXISTS `folders` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `label` varchar(255) DEFAULT "",
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+COMMIT;

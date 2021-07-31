@@ -4,79 +4,79 @@ INSERT INTO `files` (
         `description_pl`,
         `description_en`,
         `name`,
-        `exercise`
+        `folder_id`
     )
 VALUES (
         1,
         "Bądź szczęśliwy",
         'Be happy',
         "test.pdf",
-        "fast_reading"
+        4
     ),
     (
         2,
         "Obudź mnie",
         'Wake me up',
         "test.pdf",
-        "fast_reading"
+        4
     ),
-    (3, "DOTA", 'DOTA', "test.pdf", "fast_reading"),
-    (4, "Cukier", 'Sugar', "test.pdf", "fast_reading"),
+    (3, "DOTA", 'DOTA', "test.pdf", 4),
+    (4, "Cukier", 'Sugar', "test.pdf", 4),
     (
         5,
         "Najlepszy film ever",
         'YMCA',
         "test.pdf",
-        "fast_reading"
+        4
     ),
     (
         6,
         "Najlepszy film ever",
         'The best movie ever',
         "test.pdf",
-        "fast_reading"
+        4
     ),
     (
         7,
         "Najlepszy film ever",
         'La Vida Loca',
         "test.pdf",
-        "fast_reading"
+        4
     ),
     (
         8,
         "Najlepszy film ever",
         'The best movie ever',
         "test.pdf",
-        "fast_reading"
+        4
     ),
-    (9, "Cola", 'Cola', "test.pdf", "fast_reading"),
+    (9, "Cola", 'Cola', "test.pdf", 4),
     (
         10,
         "Najlepszy film ever",
         'The best movie ever',
         "test.pdf",
-        "fast_reading"
+        2
     ),
     (
         11,
         "Najlepszy film ever",
         'The best movie ever',
         "test.pdf",
-        "fast_reading"
+        5
     ),
     (
         12,
         "Najlepszy film ever",
         'The best movie ever',
         "test.pdf",
-        "fast_reading"
+        4
     ),
     (
         13,
         "Najlepszy film ever",
         'The best movie ever',
         "test.pdf",
-        "fast_reading"
+        4
     );
 COMMIT;

@@ -13,7 +13,18 @@ router.get("/", permit(15), (req, res) => {
     cb: cb(res),
     table: "files",
     type: "select",
-    columns: ["id", "description_pl", "description_en", "name", "exercise"],
+    columns: ["id", "description_pl", "description_en", "name", "folder_id"],
+  };
+  db(options);
+});
+
+router.get("/folder/:id/", permit(15), (req, res) => {
+  const options = {
+    cb: cb(res),
+    table: "files",
+    type: "selectWhere",
+    columns: ["id", "description_pl", "description_en", "name", "folder_id"],
+    conditions: [{ field: "folder_id", condition: "=", value: req.params.id }],
   };
   db(options);
 });
@@ -42,8 +53,11 @@ router.delete("/:id/", permit(15), (req, res) => {
 router.post("/", (req, res) => {
   const form = new formidable.IncomingForm();
   form.parse(req, function (err, fields, files) {
+    const fileExtension = files.new_file.name.split(".").pop();
     const oldPath = files.new_file.path;
-    const newPath = `${servicePath}/../files/` + files.new_file.name;
+    /* const newPath = `${servicePath}/../files/` + files.new_file.name; */
+    const newPath =
+      `${servicePath}/../files/` + fields.name + "." + fileExtension;
     const rawData = fs.readFileSync(oldPath);
 
     fs.writeFile(newPath, rawData, function (err) {
@@ -52,7 +66,7 @@ router.post("/", (req, res) => {
         cb: cb(res),
         table: "files",
         type: "create",
-        values: { ...fields, name: files.new_file.name },
+        values: { ...fields, name: fields.name + "." + fileExtension },
       };
       db(options);
     });
