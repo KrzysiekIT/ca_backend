@@ -12,6 +12,7 @@ DROP TABLES `roles`,
 `movies`,
 `lessons_demo`,
 `folders`,
-`files`;
+`files`,
+`activation_links`;
 SET FOREIGN_KEY_CHECKS = 1;
 COMMIT;

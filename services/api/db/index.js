@@ -39,7 +39,8 @@ routes.get("/seed", (req, res) => {
     "movies",
     "lessons_demo",
     "folders",
-    "files"
+    "files",
+    "activation_links"
   ];
   let dbQuery = "";
   tables.forEach((table) => {
