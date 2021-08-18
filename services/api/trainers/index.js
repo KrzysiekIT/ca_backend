@@ -64,8 +64,8 @@ router.get("/:id/", permit(15), (req, res) => {
     conditions: [
       {
         field: "`users`.`role_id`",
-        condition: "=",
-        value: 3,
+        condition: "<",
+        value: 4,
       },
       {
         field: "`users`.`id`",

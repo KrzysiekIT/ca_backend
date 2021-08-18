@@ -24,8 +24,8 @@ router.get("/", (req, res) => {
     conditions: [
       {
         field: "`trainers`.`role_id`",
-        condition: "=",
-        value: 3,
+        condition: "<",
+        value: 4,
       },
     ],
     join: [
