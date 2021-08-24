@@ -14,7 +14,7 @@ router.get("/", permit(15), (req, res) => {
   db(options);
 });
 
-router.put("/", permit(15), (req, res) => {
+router.put("/", permit(7), (req, res) => {
   const options = {
     cb: cb(res),
     table: "terms",
