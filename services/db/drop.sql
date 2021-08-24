@@ -13,6 +13,7 @@ DROP TABLES `roles`,
 `lessons_demo`,
 `folders`,
 `files`,
+`notes`,
 `activation_links`;
 SET FOREIGN_KEY_CHECKS = 1;
 COMMIT;

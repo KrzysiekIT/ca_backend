@@ -40,6 +40,7 @@ routes.get("/seed", (req, res) => {
     "lessons_demo",
     "folders",
     "files",
+    "notes",
     "activation_links"
   ];
   let dbQuery = "";
