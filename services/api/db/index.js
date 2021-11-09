@@ -41,7 +41,8 @@ routes.get("/seed", (req, res) => {
     "folders",
     "files",
     "notes",
-    "activation_links"
+    "activation_links",
+    "single"
   ];
   let dbQuery = "";
   tables.forEach((table) => {
