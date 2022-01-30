@@ -53,10 +53,7 @@ router.delete("/:id/", permit(15), (req, res) => {
     table: "future_skills",
     type: "remove",
     conditions: [{ field: "id", condition: "=", value: req.params.id }],
-<<<<<<< HEAD
     force: true
-=======
->>>>>>> 75581553e21d9ffb6887b613594710ee4d725a8b
   };
   db(options);
 });
