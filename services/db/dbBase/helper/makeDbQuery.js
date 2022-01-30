@@ -120,10 +120,14 @@ const makeDbQuery = () => {
         ", "
       )} FROM ${table} WHERE id=LAST_INSERT_ID()`;
     },
-    remove: ({ table, conditions }) => {
-      return `DELETE FROM ${table} WHERE ${prepare.updateConditions(
+    remove: ({ table, conditions, force }) => {
+      let coreCommand = `DELETE FROM ${table} WHERE ${prepare.updateConditions(
         conditions
-      )};`;
+      )};`
+      if(force) {
+        coreCommand = `SET FOREIGN_KEY_CHECKS=0; ${coreCommand} SET FOREIGN_KEY_CHECKS=1;`
+      }
+      return coreCommand;
     },
     update: ({ table, newValues, conditions }) => {
       return `UPDATE ${table} SET ${prepare.updateSet(
