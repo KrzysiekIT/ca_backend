@@ -42,7 +42,8 @@ routes.get("/seed", (req, res) => {
     "files",
     "notes",
     "activation_links",
-    "single"
+    "single",
+    "future_skills"
   ];
   let dbQuery = "";
   tables.forEach((table) => {

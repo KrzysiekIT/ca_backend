@@ -52,6 +52,9 @@ const makeDbQuery = () => {
       return `SELECT ${columns.join(", ")} FROM ${table};`;
     },
     selectWhere: ({ columns, table, conditions }) => {
+      console.log(`SELECT ${columns.join(
+        ", "
+      )} FROM ${table} WHERE ${prepare.updateConditions(conditions)};`)
       return `SELECT ${columns.join(
         ", "
       )} FROM ${table} WHERE ${prepare.updateConditions(conditions)};`;

@@ -15,6 +15,7 @@ DROP TABLES `roles`,
 `files`,
 `notes`,
 `activation_links`,
-`single`;
+`single`,
+`future_skills`;
 SET FOREIGN_KEY_CHECKS = 1;
 COMMIT;
