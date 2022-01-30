@@ -4,35 +4,42 @@ const db = require("@/db/dbBase");
 const cb = require("@/api/helper");
 const permit = require("@/auth/permit");
 const fs = require("fs");
-const path = require("path");
 const formidable = require("formidable");
 const servicePath = require("@/path");
 
 router.get("/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
-    table: "files",
+    table: "teaching_materials",
     type: "select",
-    columns: ["id", "description_pl", "description_en", "name", "folder_id"],
+    columns: ["id", "parent_id", "name", "link", "type"],
   };
   db(options);
 });
 
-router.get("/folder/:id/", permit(15), (req, res) => {
+router.get("/:parentId/", permit(15), (req, res) => {
+  let parentId = req.params.parentId
+  let selectCondition = "="
+  if(+parentId===0) {
+    parentId = null;
+    selectCondition = "IS"
+  }
+
   const options = {
     cb: cb(res),
-    table: "files",
+    table: "teaching_materials",
     type: "selectWhere",
-    columns: ["id", "description_pl", "description_en", "name", "folder_id"],
-    conditions: [{ field: "folder_id", condition: "=", value: req.params.id }],
+    columns: ["id", "parent_id", "name", "link", "type"],
+    conditions: [{ field: "parent_id", condition: selectCondition, value: parentId }],
   };
+
   db(options);
 });
 
 router.put("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
-    table: "files",
+    table: "teaching_materials",
     type: "update",
     newValues: req.body.newValues,
     conditions: [{ field: "id", condition: "=", value: req.params.id }],
@@ -43,14 +50,26 @@ router.put("/:id/", permit(15), (req, res) => {
 router.delete("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
-    table: "files",
+    table: "teaching_materials",
     type: "remove",
     conditions: [{ field: "id", condition: "=", value: req.params.id }],
+    force: true
   };
   db(options);
 });
 
-router.post("/", (req, res) => {
+router.post("/", permit(15), (req, res) => {
+  const options = {
+    cb: cb(res),
+    table: "teaching_materials",
+    type: "create",
+    values: req.body.values,
+  };
+  console.log(options)
+  db(options);
+});
+
+router.post("/file/", (req, res) => {
   const form = new formidable.IncomingForm();
   form.parse(req, function (err, fields, files) {
     const fileExtension = files.new_file.name.split(".").pop();
@@ -64,7 +83,7 @@ router.post("/", (req, res) => {
       if (err) console.log(err);
       const options = {
         cb: cb(res),
-        table: "files",
+        table: "teaching_materials",
         type: "create",
         values: { ...fields, name: fields.name + "." + fileExtension },
       };
