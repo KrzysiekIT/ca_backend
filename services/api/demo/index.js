@@ -14,6 +14,17 @@ router.get("/", permit(15), (req, res) => {
   db(options);
 });
 
+router.get("/:id/", permit(15), (req, res) => {
+  const options = {
+    cb: cb(res),
+    table: "lessons_demo",
+    type: "selectWhere",
+    columns: ["id", "day", "hour", "link", "trainer_id", "students_number"],
+    conditions: [{ field: "id", condition: "=", value: req.params.id }],
+  };
+  db(options);
+});
+
 router.get("/check/:link/", (req, res) => {
   const options = {
     cb: cb(res),
@@ -36,6 +47,14 @@ const getRandomString = (length) => {
   }
   return result;
 };
+
+const getMultipleRandomString = (linkCount, linkLength, separator) => {
+  const randomString = [];
+  for(let i=0;i<linkCount;i++) {
+    randomString.push(getRandomString(linkLength))
+  }
+  return randomString.join(separator)
+}
 
 router.patch("/generate/:id/", permit(15), (req, res) => {
   const options = {
@@ -70,11 +89,13 @@ router.delete("/:id/", permit(15), (req, res) => {
 });
 
 router.post("/", permit(15), (req, res) => {
+  const studentsNumber = req.body.values.students_number;
+  const linkLength = 20;
   const options = {
     cb: cb(res),
     table: "lessons_demo",
     type: "create",
-    values: req.body.values,
+    values: {...req.body.values, link: `${getMultipleRandomString(studentsNumber, linkLength, ";")}`},
   };
   db(options);
 });
