@@ -3,6 +3,6 @@ INSERT INTO `single` (`id`, `name`, `body`)
 VALUES (
         1,
         'payment_data',
-        'Dane do płatności…'
+        'Numer konta: xxx, Imię i nazwisko: xxx'
     );
 COMMIT;
