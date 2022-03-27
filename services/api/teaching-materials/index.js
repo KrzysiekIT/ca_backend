@@ -65,7 +65,6 @@ router.post("/", permit(15), (req, res) => {
     type: "create",
     values: req.body.values,
   };
-  console.log(options)
   db(options);
 });
 
