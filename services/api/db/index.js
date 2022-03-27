@@ -39,6 +39,7 @@ routes.get("/seed", (req, res) => {
     "lessons_demo",
     "folders",
     "teaching_materials",
+    "movies",
     "notes",
     "activation_links",
     "single",

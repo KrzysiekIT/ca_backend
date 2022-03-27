@@ -10,9 +10,9 @@ const servicePath = require("@/path");
 router.get("/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
-    table: "future_skills",
+    table: "movies",
     type: "select",
-    columns: ["id", "parent_id", "name", "type"],
+    columns: ["id", "parent_id", "name", "link", "type"],
   };
   db(options);
 });
@@ -27,9 +27,9 @@ router.get("/:parentId/", permit(15), (req, res) => {
 
   const options = {
     cb: cb(res),
-    table: "future_skills",
+    table: "movies",
     type: "selectWhere",
-    columns: ["id", "parent_id", "name", "type"],
+    columns: ["id", "parent_id", "name", "link", "type"],
     conditions: [{ field: "parent_id", condition: selectCondition, value: parentId }],
   };
 
@@ -39,7 +39,7 @@ router.get("/:parentId/", permit(15), (req, res) => {
 router.put("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
-    table: "future_skills",
+    table: "movies",
     type: "update",
     newValues: req.body.newValues,
     conditions: [{ field: "id", condition: "=", value: req.params.id }],
@@ -50,7 +50,7 @@ router.put("/:id/", permit(15), (req, res) => {
 router.delete("/:id/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
-    table: "future_skills",
+    table: "movies",
     type: "remove",
     conditions: [{ field: "id", condition: "=", value: req.params.id }],
     force: true
@@ -61,7 +61,7 @@ router.delete("/:id/", permit(15), (req, res) => {
 router.post("/", permit(15), (req, res) => {
   const options = {
     cb: cb(res),
-    table: "future_skills",
+    table: "movies",
     type: "create",
     values: req.body.values,
   };
@@ -82,7 +82,7 @@ router.post("/file/", (req, res) => {
       if (err) console.log(err);
       const options = {
         cb: cb(res),
-        table: "future_skills",
+        table: "movies",
         type: "create",
         values: { ...fields, name: fields.name + "." + fileExtension },
       };
